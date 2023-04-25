@@ -13,7 +13,7 @@ fetch(url)
             <div class="card-body">
               <h5 class="card-title">${item.name}</h5>
               <p class="card-text">${item.level}</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <a href="https://digimon.fandom.com/wiki/Category:Digimon_species" class="btn btn-primary">Ve más en Digimon Wiki</a>
             </div>
             </div>
             </div>
@@ -21,8 +21,17 @@ fetch(url)
             if (item.id == 3) {break;}
         }
     
-})
+});
 
+
+
+function mostrarHistoria(){
+  document.getElementById('historia').style.display = "block"
+}
+
+function ocultarHistoria(){
+  document.getElementById('historia').style.display = "none";
+}
 
 
 
