@@ -1,28 +1,24 @@
 var url = "https://digimon-api.vercel.app/api/digimon" 
-var contenido = document.querySelector("#contenido")
+var contenido = document.querySelector("#contenido");
+var searchbar = document.getElementById("search");
+var dataStore = [];
 
-fetch(url)
-.then(response => response.json())
-.then(datos => {
-    for (item of datos) {
-        
-            contenido.innerHTML +=  `
-            <div class="tarjeta">
-            <div class="card" style="width: 18rem; ">
-            <img src="${item.img}" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">${item.name}</h5>
-              <p class="card-text">${item.level}</p>
-              <a href="https://digimon.fandom.com/wiki/Category:Digimon_species" class="btn btn-primary">Ve más en Digimon Wiki</a>
-            </div>
-            </div>
-            </div>
-            `
-            if (item.id == 3) {break;}
-        }
-    
-});
 
+fetch(url).then((response)=>{
+  return response.json();
+}).then((item)=>{
+  console.log(item[0].title);
+  let datos="";
+  item.map((values)=>{
+    datos+=` 
+    <tr>
+      <td>${values.name}</td>
+      <td>${values.level}</td>
+      <td><img src="${values.img}"/></td>
+    </tr>`;
+  });
+  document.getElementById("table-body").innerHTML=datos;
+})
 
 
 function mostrarHistoria(){
@@ -34,15 +30,20 @@ function ocultarHistoria(){
 }
 
 
+let mybutton = document.getElementById("myBtn");
 
-/*
 
-        <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-*/
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
